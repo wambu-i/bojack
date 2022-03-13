@@ -24,7 +24,6 @@ class FileMenu: public QMenu {
 
     private slots:
         void exitBojack();
-
 };
 
 #endif

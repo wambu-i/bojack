@@ -1,9 +1,10 @@
 #include "filemenu.h"
 
 FileMenu::FileMenu(){
-    this->setTitle(tr("&File Menu"));
+    this->setTitle(tr("&File"));
     this->createFileActions();
     this->createMenuBar(this);
+
 }
 
 void FileMenu::createMenuBar(FileMenu *fileOption) {
