@@ -1,4 +1,7 @@
+#include <QLabel>
+#include <QMessageBox>
 #include "bojack.h"
+#include "commandline.h"
 #include "ui_bojack.h"
 
 Bojack::Bojack(QWidget *parent)
@@ -11,15 +14,29 @@ Bojack::Bojack(QWidget *parent)
     this->setUpWindow(ui->centralwidget);
     this->createMenuBar();
 
-    this->cmd = new CommandLine();
-    this->cmd->drawLineText(ui->centralwidget);
+    this->cmd = new CommandLine(ui->centralwidget);
+    //this->cmd->drawLineText(ui->centralwidget);
+    //auto layout = this->cmd->returnCmdLayout();
+    QHBoxLayout *layout = new QHBoxLayout(ui->centralwidget);
+    layout->addWidget(this->cmd->returnCmdWidget());
+    connect(this->cmd, SIGNAL(enterPressed()), this, SLOT(drawTextLabel()));
+    ui->centralwidget->setLayout(layout);
+    //ui->centralwidget->show();
+}
+
+void Bojack::drawTestText() {
+    QMessageBox::information(this, "TEST", "1", QMessageBox::Ok);
 }
 
 Bojack::~Bojack()
 {
     delete ui;
 }
-
+void Bojack::drawTextLabel() {
+    QLabel *label = new QLabel(this->ui->centralwidget);
+    label->setText("first line\nsecond line");
+    label->show();
+}
 void Bojack::setUpWindow(QWidget *widget) {
     QPalette palette = widget->palette();
     palette.setColor(QPalette::Window, Qt::black);

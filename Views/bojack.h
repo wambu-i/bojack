@@ -17,7 +17,7 @@ class Bojack : public QMainWindow
 public:
     Bojack(QWidget *parent = nullptr);
     ~Bojack();
-
+ //void drawTextLabel();
 private:
     Ui::Bojack *ui;
 
@@ -27,6 +27,7 @@ private:
     void setName() {
         this->setWindowTitle(Bojack::title);
     }
+
 
     void setUpWindow(QWidget *);
     void createMenuBar();
@@ -38,5 +39,9 @@ private:
 
     // Objects
     CommandLine *cmd;
+
+private slots:
+    void drawTestText();
+    void drawTextLabel();
 };
 #endif // BOJACK_H
